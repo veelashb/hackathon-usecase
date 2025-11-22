@@ -1,0 +1,19 @@
+
+module "network" {
+  source       = "../../modules/network"
+  vpc_name     = "prod-vpc"
+  public_cidr  = "10.2.1.0/24"
+  private_cidr = "10.2.2.0/24"
+  region       = "us-west1"
+}
+
+module "storage" {
+  source      = "../../modules/storage"
+  bucket_name = "terraform-state-prod"
+  region      = "us-west1"
+}
+
+module "iam" {
+  source     = "../../modules/iam"
+  project_id = "my-gcp-project"
+}

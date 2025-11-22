@@ -1,0 +1,19 @@
+
+module "network" {
+  source       = "../../modules/network"
+  vpc_name     = "staging-vpc"
+  public_cidr  = "10.1.1.0/24"
+  private_cidr = "10.1.2.0/24"
+  region       = "us-east1"
+}
+
+module "storage" {
+  source      = "../../modules/storage"
+  bucket_name = "terraform-state-staging"
+  region      = "us-east1"
+}
+
+module "iam" {
+  source     = "../../modules/iam"
+  project_id = "my-gcp-project"
+}
